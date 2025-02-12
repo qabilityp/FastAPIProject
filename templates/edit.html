@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info and edit URL</title>
+</head>
+<body>
+    <form action="/{{ url_data.short_url }}/edit" method="post">
+        {% for key, value in url_data.items() if key != '_id' %}
+            <div class="field">
+                <label for="{{ key }}">{{ key | capitalize }}:</label>
+                {% if key == "clicks" %}
+                    <span>{{ value }}</span>
+                {% else %}
+                    <input type="text" name="{{ key }}" id="{{ key }}" value="{{ value }}">
+                {% endif %}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>
